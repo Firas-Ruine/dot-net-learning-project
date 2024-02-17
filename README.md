@@ -5,7 +5,8 @@
 This guide outlines the steps to generate Entity Framework Core models for a database using the Scaffold-DbContext command. Before initiating the process, ensure that the required packages are installed. The steps include creating a database, executing SQL scripts, verifying table generation, and finally utilizing the Package Manager Console to generate models. Follow the instructions meticulously to successfully generate models for your Entity Framework Core project.
 
 ```shell
-<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" /> <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">`
+<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
 ```
 
 1. Ensure that the necessary packages are installed by adding the above dependencies to your project file.
