@@ -1,0 +1,47 @@
+﻿@page
+@model e_learning.Pages.CoursesModel
+@{
+}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Course Name</th>
+            <th>Course Description</th>
+            <th>Instructor</th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th>Assignments</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var cours in Model.courses)
+        {
+            <tr>
+                <td>@cours.CourseId</td>
+                <td>@cours.CourseName</td>
+                <td>@cours.Description</td>
+                @if (cours.Instructor != null)
+                {
+                    <td>@cours.Instructor.Firstname @cours.Instructor.Lastname</td>
+                }
+                <td>@cours.StartDate</td>
+                <td>@cours.EndDate</td>
+                <td>
+                    <ul>
+                    @foreach(var a in cours.Assignments)
+                    {
+                            <li>
+                                @a.Title ( Number of Submitions : @a.Submissions.Count())
+                            </li>
+                    }
+                    </ul>
+                </td>
+            </tr>
+        }
+       
+    </tbody>
+</table>
+
+
