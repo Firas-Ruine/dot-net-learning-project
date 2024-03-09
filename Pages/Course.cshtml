@@ -1,0 +1,33 @@
+﻿@page
+@model e_learning.Pages.CourseModel
+@{
+ViewData["Title"] = "Course";
+}
+
+<div class="container mt-4">
+    <h2>Courses Taught by Instructors</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                @* <th scope="col">Instructor</th> *@
+                <th scope="col">Course Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model.Courses)
+            {
+                <tr>
+                    @* <td>@course.Instructor.Username</td> *@
+                    <td>@course.CourseName</td>
+                    <td>@course.Description</td>
+                    <td>@course.StartDate</td>
+                    <td>@course.EndDate</td>
+                    @* <td><a href="@Url.Page("InstructorCourses", new { instructorId = course.InstructorId })">View Courses</a></td> *@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

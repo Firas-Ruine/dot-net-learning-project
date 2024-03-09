@@ -1,0 +1,75 @@
+﻿@page
+@model e_learning.Pages.AssignementsModel
+@{
+ViewData["Title"] = "Assignements";
+}
+
+<div class="text-center my-2">
+    <h1 class="display-4">Number of Assignements : @Model.Assignments.Count()</h1>
+</div>
+
+<form method="get" class="mt-4 mb-4">
+    <div class="row">
+        <div class="input-group">
+            <input type="text" class="form-control" id="courseName" name="courseName" placeholder="Search products by Name">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <label for="dueDate" class="col-4 col-form-label">Due Date</label>
+            <div class="col-12">
+                <div class="input-group date" id="datepicker">
+                    <input type="date" class="form-control" id="dueDate" name="dueDate" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@if (Model.Assignments.Count() > 0)
+{
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Course Name</th>
+                        <th>Course Description</th>
+                        <th>Instructor</th>
+                        <th>Due date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var assignment in Model.Assignments)
+                    {
+                        <tr>
+                            <td>@assignment.AssignmentId</td>
+                            <td>@assignment.Title</td>
+                            <td>@assignment.Description</td>
+                            <td>@assignment.Course.CourseName</td>
+                            <td>@assignment.Course.Description</td>
+                            <td>@assignment.Course.Instructor.Firstname</td>
+                            <td>@assignment.DueDate</td>
+</tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        No Assignements found
+    </div>
+}
+</div>
+
+
+
