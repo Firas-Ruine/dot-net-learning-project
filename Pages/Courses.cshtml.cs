@@ -30,15 +30,15 @@ namespace e_learning.Pages
             if (!startDate.IsNullOrEmpty() && endDate.IsNullOrEmpty())
             {
                 
-                coursesQuery = coursesQuery.Where(c => c.StartDate == DateOnly.Parse(startDate));
+                coursesQuery = coursesQuery.Where(c => c.StartDate >= DateOnly.Parse(startDate));
 
             }else if(!endDate.IsNullOrEmpty() && startDate.IsNullOrEmpty())
             {
-                coursesQuery = coursesQuery.Where(c => c.EndDate == DateOnly.Parse(endDate));
+                coursesQuery = coursesQuery.Where(c => c.EndDate <= DateOnly.Parse(endDate));
             }
             else if(!startDate.IsNullOrEmpty() && !endDate.IsNullOrEmpty())
             {
-                coursesQuery = coursesQuery.Where(c => c.StartDate == DateOnly.Parse(startDate) && c.EndDate == DateOnly.Parse(endDate));
+                coursesQuery = coursesQuery.Where(c => c.StartDate >= DateOnly.Parse(startDate) && c.EndDate <= DateOnly.Parse(endDate));
             }
 
             courses = coursesQuery.ToList();

@@ -36,7 +36,6 @@ CREATE TABLE courses (
     course_name VARCHAR(100) NOT NULL,
     description TEXT,
     instructor_id INT,
-    category_id INT,
     start_date DATE,
     end_date DATE,
     FOREIGN KEY (instructor_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -248,6 +247,7 @@ VALUES
 INSERT INTO submissions (assignment_id, user_id, submission_date, file_path)
 VALUES 
     (1, 1, '2024-03-01', '/path/to/submission_file1.pdf'),
+    (1, 5, '2025-03-01', '/path/to/submission_file1.pdf'),
     (1, 2, '2024-03-01', '/path/to/submission_file2.pdf'),
     (3, 3, '2024-02-15', '/path/to/lab1_report_user3.docx'),
     (3, 4, '2024-02-15', '/path/to/lab1_report_user4.docx'),
