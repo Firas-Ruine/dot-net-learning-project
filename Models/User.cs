@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace e_learning.Models;
 
 public partial class User
 {
     public int UserId { get; set; }
-
     public string Username { get; set; } = null!;
 
     public string Password { get; set; } = null!;
-
+    [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
     public string Email { get; set; } = null!;
 
     public string? Firstname { get; set; }

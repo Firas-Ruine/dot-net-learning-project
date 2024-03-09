@@ -1,0 +1,107 @@
+﻿@page
+@model e_learning.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-control {
+            border-radius: 4px;
+            border-color: #ced4da;
+        }
+
+        .btn-login {
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .btn-login:hover {
+                background-color: #0056b3;
+            }
+
+        .error-message {
+            color: #dc3545;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2 class="login-header">Login</h2>
+        <form method="post">
+            <div class="form-group">
+                <input type="text" id="username" name="username" class="form-control" placeholder="Username" asp-for="UserData.Username" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" asp-for="UserData.Password">
+            </div>
+            <div class="form-group">
+                <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirmed Password" >
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email" asp-for="UserData.Email">
+            </div>
+            <div class="form-group">
+                <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First Name" asp-for="UserData.Firstname">
+            </div>
+            <div class="form-group">
+                <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last Name" asp-for="UserData.Lastname">
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="role" id="studentRadioButton" value="1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Student
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="role" id="instructorRadioButton" value="2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Instructor
+                </label>
+            </div>
+            <button type="submit" class="btn btn-login btn-block">Register</button>
+            @if (!string.IsNullOrEmpty(Model.Error))
+            {
+                <div class="alert alert-danger m-2" role="alert">
+                @Model.Error
+                </div>
+            }
+            
+        </form>
+
+    </div>
+
+</body>
+</html>
