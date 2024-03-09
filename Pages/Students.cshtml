@@ -1,0 +1,156 @@
+﻿@page
+@model e_learning.Pages.StudentsModel
+@{
+}
+
+<div class="text-center my-2">
+    <h1 class="display-4">Number of Students : @Model.Students.Count()</h1>
+</div>
+
+<form method="get" class="mt-4 mb-4">
+    <div class="row">
+        <div class="input-group">
+            <input type="text" class="form-control" id="studentName" name="studentName" placeholder="Search Student by Name">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </div>
+    <div class ="row col-6 mx-2">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="hasCourses" id="hasCourses" value="1">
+            <label class="form-check-label" for="hasCourses">Has Courses</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="hasCourses" id="hasCourses" value="0">
+            <label class="form-check-label" for="hasCourses">Without Courses</label>
+        </div>
+    </div>
+</form>
+
+<div class="row">
+    <div class="col-9">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>UserName</th>
+                    <th>Email</th>
+                    <th> <span><i class="fa fa-eye" /> </span></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model.Students)
+                {
+                    <tr>
+                        <td>@student.UserId</td>
+                        <td>@student.Firstname</td>
+                        <td>@student.Lastname</td>
+                        <td>@student.Username</td>
+                        <td>@student.Email</td>
+                        <td>
+                            <button data-student-id="@student.UserId" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="@string.Concat("#coursesModal", @student.UserId)">
+                                Courses
+                            </button>
+
+                            <div class="modal fade" id="@string.Concat("coursesModal",@student.UserId)" tabindex="-1" role="dialog" aria-labelledby="@string.Concat("coursesModalLabel", @student.UserId)" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="@string.Concat("coursesModalLabel", @student.UserId)">Courses for @student.Firstname</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                               
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            @if (student.Courses != null && student.Courses.Any())
+                                            {
+                                                    
+                                               <div class="accordion accordion-flush" id="accordionFlushExample">
+                                                    @foreach (var course in student.Courses)
+                                                    {
+                                                        var subs = course.Assignments.SelectMany(a => a.Submissions);
+                                                        <div class="accordion-item">
+                                                            <h2 class="accordion-header" id="@string.Concat("flush-headingOne",course.CourseId)">
+                                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="@string.Concat("#flush-collapseOne", course.CourseId)" aria-expanded="false" aria-controls="@string.Concat("flush-collapseOne",course.CourseId)">
+                                                                    @course.CourseName
+                                                                </button>
+                                                            </h2>
+                                                            <div id="@string.Concat("flush-collapseOne",course.CourseId)" class="accordion-collapse collapse" aria-labelledby="@string.Concat("flush-headingOne",course.CourseId)" data-bs-parent="#accordionFlushExample">
+                                                                <div class="accordion-body">
+                                                                    <div class="row">
+                                                                        <div class="col-12"><h6>Description</h6></div>
+                                                                        <div class="col-12">
+                                                                            @course.Description
+                                                                        </div>
+                                                                    </div>
+                                                                    @if(course.Assignments != null && course.Assignments.Any())
+                                                                    {
+                                                                        <div class="row mt-5">
+                                                                        <div class="col-12 "><h6>Assignments</h6></div>
+                                                                        <div class="col-12">
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th scope="col">#</th>
+                                                                                            <th scope="col">Title</th>
+                                                                                            <th scope="col">Description</th>
+                                                                                            <th scope="col">DueDate</th>
+                                                                                            <th scope="col">Is Submitted</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        @foreach(var a in course.Assignments)
+                                                                                        {
+                                                                                            var hasSubmissions = a.Submissions.Count() > 0;
+
+                                                                                            <tr>
+                                                                                                <th scope="row">@a.AssignmentId</th>
+                                                                                                <td>@a.Title</td>
+                                                                                                <td>@a.Description</td>
+                                                                                                <td>@a.DueDate</td>
+                                                                                                <td>
+                                                                                                    @if (hasSubmissions)
+                                                                                                    {
+                                                                                                        <i class="fa fa-check text-success"/>
+                                                                                                    }else{
+                                                                                                        <i class="fa fa-xmark text-danger"/>
+                                                                                                    }
+                                                                                                </td>
+                                                                                             </tr>
+                                                                                        }
+                                                                                    </tbody>
+                                                                                </table>
+                                                                        </div>
+                                                                    </div>
+                                                                    }
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                     }
+                                               </div>
+                                                   
+                                            }
+                                            else
+                                            {
+                                                <p>No courses found for this student.</p>
+                                            }
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

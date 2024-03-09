@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/e_learning.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/font-awsome/css/all.min.css"/>
 </head>
 <body>
     <header>
@@ -30,6 +31,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/User">Users</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Courses">Courses</a>
+                        </li>                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Students">Students</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -50,6 +57,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/font-awsome/js/all.min.js" ></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
