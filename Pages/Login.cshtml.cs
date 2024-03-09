@@ -14,7 +14,7 @@ namespace e_learning.Pages
 {
     public class LoginModel : PageModel
     {
-        private readonly ELearningContext _eLearningContext; // Replace YourDbContext with your actual DbContext class name
+        private readonly ELearningContext _eLearningContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         [BindProperty]
