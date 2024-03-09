@@ -9,27 +9,29 @@
 
 <form method="get" class="mt-4 mb-4">
     <div class="row">
-        <div class="input-group">
-            <input type="text" class="form-control" id="studentName" name="studentName" placeholder="Search Student by Name">
-            <div class="input-group-append">
-                <button type="submit" class="btn btn-primary">Search</button>
+        <div class="col-12">
+            <div class="input-group">
+                <input type="text" class="form-control" id="studentName" name="studentName" placeholder="Search Student by Name">
+                <div class="input-group-append mr-2">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
             </div>
         </div>
-    </div>
-    <div class ="row col-6 mx-2">
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="hasCourses" id="hasCourses" value="1">
-            <label class="form-check-label" for="hasCourses">Has Courses</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="hasCourses" id="hasCourses" value="0">
-            <label class="form-check-label" for="hasCourses">Without Courses</label>
+        <div class ="col-6 px-2">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="hasCourses" id="hasCourses" value="1">
+                <label class="form-check-label" for="hasCourses">Has Courses</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="hasCourses" id="hasCourses" value="0">
+                <label class="form-check-label" for="hasCourses">Without Courses</label>
+            </div>
         </div>
     </div>
 </form>
 
 <div class="row">
-    <div class="col-9">
+    <div class="col-12">
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>

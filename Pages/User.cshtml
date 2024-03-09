@@ -8,6 +8,18 @@ ViewData["Title"] = "Users Listing";
     <div class="row">
         <div class="col">
             <h2>Users and Roles</h2>
+            <form method="get">
+                <div class="form-group">
+                    <label for="roleFilter">Filter by Role:</label>
+                    <select class="form-control" id="roleFilter" name="roleFilter" onchange="this.form.submit()">
+                        <option value="">All Roles</option>
+                        @foreach (var role in Model.Roles)
+                        {
+                            <option value="@role.RoleName">@role.RoleName</option>
+                        }
+                    </select>
+                </div>
+            </form>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
