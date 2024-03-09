@@ -38,7 +38,7 @@ namespace e_learning.Pages
             {
                 StudentsQuery = StudentsQuery.Where(s => s.Enrollments.Any());
             }
-            else
+            else if (!hasCourses.IsNullOrEmpty() && hasCourses == "0")
             {
                 StudentsQuery = StudentsQuery.Where(s => s.Enrollments.Count() <=0);
             }
